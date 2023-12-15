@@ -25,14 +25,15 @@ opt.completeopt = "menuone,noinsert,noselect"
 opt.hidden = true
 opt.errorbells = false
 opt.swapfile = true 
-opt.backup = true
+opt.backup = false 
 opt.undofile = true
 opt.backspace = "indent,eol,start"
 opt.splitright = true
 opt.splitbelow = true
-opt.autochdir = true
+opt.autochdir = false
 opt.iskeyword:append("-")
 opt.mouse:append('a')
 opt.clipboard:append("unnamedplus")
 opt.modifiable = true
 opt.encoding = "UTF-8"
+
