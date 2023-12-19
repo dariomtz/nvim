@@ -1,7 +1,7 @@
 -- Keymaps
 -- General
 vim.keymap.set('n', '<leader>w', ':w<CR>', {})
-vim.keymap.set('n', '<leader>wq', ':wq<CR>', {})
+vim.keymap.set('n', '<leader>wq', ':w | bd<CR>', {})
 vim.keymap.set("n", "<leader>ew", vim.cmd.Ex)
 
 -- Telescope
