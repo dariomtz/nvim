@@ -20,8 +20,8 @@ end
 
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>g', builtin.live_grep, {})
-vim.keymap.set('v', '<leader>g', function()
+vim.keymap.set('n', '<leader>s', builtin.live_grep, {})
+vim.keymap.set('v', '<leader>s', function()
     local text = vim.getVisualSelection()
     if #text > 0 then
         builtin.grep_string({ search = text })
@@ -48,6 +48,10 @@ vim.keymap.set('v', '<s-tab>', '<gv', {})
 -- Comment
 vim.api.nvim_set_keymap("n", "<C-/>", "gcc", { noremap = false })
 vim.api.nvim_set_keymap("v", "<C-/>", "gcc", { noremap = false })
+
+-- Github open
+vim.api.nvim_set_keymap("n", "<leader>gh", ":OpenInGHFileLines<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<leader>gh", ":OpenInGHFileLines<CR>", { noremap = true, silent = true })
 
 -- LSP
 local lsp_zero = require("lsp-zero")
@@ -76,3 +80,4 @@ require('mason-lspconfig').setup({
         lsp_zero.default_setup,
     },
 })
+
