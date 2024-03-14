@@ -29,6 +29,16 @@ vim.keymap.set('v', '<leader>s', function()
         builtin.grep_string()
     end
 end, {})
+vim.keymap.set('n', '<leader>ws', function()
+    -- Select the current word
+    local text = vim.fn.expand("<cword>")
+    text = vim.getVisualSelection()
+    if #text > 0 then
+        builtin.grep_string({ search = text })
+    else
+        builtin.grep_string()
+    end
+end, {})
 vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 vim.keymap.set('n', '<leader>h', builtin.help_tags, {})
 
@@ -56,7 +66,7 @@ vim.api.nvim_set_keymap("v", "<leader>gh", ":OpenInGHFileLines<CR>", { noremap =
 -- LSP
 local lsp_zero = require("lsp-zero")
 lsp_zero.on_attach(function(client, bufnr)
-    lsp_zero.default_keymaps({buffer = bufnr})
+    lsp_zero.default_keymaps({ buffer = bufnr })
 end)
 
 require('mason').setup({})
@@ -80,4 +90,3 @@ require('mason-lspconfig').setup({
         lsp_zero.default_setup,
     },
 })
-
