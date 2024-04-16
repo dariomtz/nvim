@@ -67,6 +67,7 @@ vim.api.nvim_set_keymap("v", "<leader>gh", ":OpenInGHFileLines<CR>", { noremap =
 local lsp_zero = require("lsp-zero")
 lsp_zero.on_attach(function(client, bufnr)
     lsp_zero.default_keymaps({ buffer = bufnr })
+    vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, { buffer = bufnr })
 end)
 
 require('mason').setup({})
@@ -89,4 +90,20 @@ require('mason-lspconfig').setup({
     handlers = {
         lsp_zero.default_setup,
     },
+})
+
+-- nvim cmp
+local cmp = require('cmp')
+local cmp_action = require('lsp-zero').cmp_action()
+
+cmp.setup({
+    preselect = 'item',
+    completion = {
+        completeopt = 'menu,menuone,noinsert',
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<CR>'] = cmp.mapping.confirm({select = false}),
+        ['<Tab>'] = cmp_action.luasnip_supertab(),
+        ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+    }),
 })
