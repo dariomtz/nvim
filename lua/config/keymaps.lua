@@ -4,6 +4,8 @@ vim.keymap.set('n', '<leader>ww', ':w<CR>', {})
 vim.keymap.set('n', '<leader>wq', ':w | bd<CR>', {})
 vim.keymap.set("n", "<leader>ew", vim.cmd.Ex)
 
+vim.keymap.set('n', '<leader>o', '<C-o>', {})
+
 -- Telescope
 function vim.getVisualSelection()
     vim.cmd('noau normal! "vz"')
@@ -103,7 +105,5 @@ cmp.setup({
     },
     mapping = cmp.mapping.preset.insert({
         ['<CR>'] = cmp.mapping.confirm({select = false}),
-        ['<Tab>'] = cmp_action.luasnip_supertab(),
-        ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
     }),
 })
