@@ -4,6 +4,7 @@ vim.keymap.set('n', '<leader>ww', ':w<CR>', {})
 vim.keymap.set('n', '<leader>wq', ':w | bd<CR>', {})
 vim.keymap.set("n", "<leader>ew", vim.cmd.Ex)
 
+-- Go back
 vim.keymap.set('n', '<leader>o', '<C-o>', {})
 
 -- Telescope
@@ -70,6 +71,9 @@ local lsp_zero = require("lsp-zero")
 lsp_zero.on_attach(function(client, bufnr)
     lsp_zero.default_keymaps({ buffer = bufnr })
     vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, { buffer = bufnr })
+    vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = bufnr })
+    vim.keymap.set('n', '<leader>p', vim.lsp.buf.format, { buffer = bufnr })
+    vim.keymap.set('n', '<leader>d', vim.lsp.buf.code_action, { buffer = bufnr })
 end)
 
 require('mason').setup({})
