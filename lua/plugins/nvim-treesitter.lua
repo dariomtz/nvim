@@ -18,6 +18,7 @@ local config = function()
             "gomod",
             "graphql",
             "html",
+            "java",
             "javascript",
             "json",
             "lua",
