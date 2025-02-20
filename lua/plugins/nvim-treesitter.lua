@@ -1,4 +1,7 @@
 local config = function()
+    install = require("nvim-treesitter.install")
+    install.compilers = {"zig"}
+    install.prefer_git = false
     require("nvim-treesitter.configs").setup({
         indent = {
             enable = true,

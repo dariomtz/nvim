@@ -73,6 +73,12 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, { buffer = bufnr })
     vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = bufnr })
     vim.keymap.set('n', '<leader>p', vim.lsp.buf.format, { buffer = bufnr })
+    vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+    vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+    vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
     vim.keymap.set('n', '<leader>d', vim.lsp.buf.code_action, { buffer = bufnr })
 end)
 
@@ -103,6 +109,12 @@ local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 
 cmp.setup({
+    sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "path" },
+    },
     preselect = 'item',
     completion = {
         completeopt = 'menu,menuone,noinsert',
