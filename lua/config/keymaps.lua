@@ -66,48 +66,4 @@ vim.api.nvim_set_keymap("v", "<C-/>", "gcc", { noremap = false })
 vim.api.nvim_set_keymap("n", "<leader>gh", ":OpenInGHFileLines<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<leader>gh", ":OpenInGHFileLines<CR>", { noremap = true, silent = true })
 
--- LSP
-local lsp_zero = require("lsp-zero")
-lsp_zero.on_attach(function(client, bufnr)
-    lsp_zero.default_keymaps({ buffer = bufnr })
-    vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, { buffer = bufnr })
-    vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { buffer = bufnr })
-    vim.keymap.set('n', '<leader>p', vim.lsp.buf.format, { buffer = bufnr })
-    vim.keymap.set('n', '<leader>d', vim.lsp.buf.code_action, { buffer = bufnr })
-end)
 
-require('mason').setup({})
-require('mason-lspconfig').setup({
-    ensure_installed = {
-        "bashls",
-        "clangd",
-        "cmake",
-        "cssls",
-        "dockerls",
-        "eslint",
-        "gopls",
-        "html",
-        "jsonls",
-        "pyright",
-        "terraformls",
-        "vimls",
-        "yamlls",
-    },
-    handlers = {
-        lsp_zero.default_setup,
-    },
-})
-
--- nvim cmp
-local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
-
-cmp.setup({
-    preselect = 'item',
-    completion = {
-        completeopt = 'menu,menuone,noinsert',
-    },
-    mapping = cmp.mapping.preset.insert({
-        ['<CR>'] = cmp.mapping.confirm({select = false}),
-    }),
-})
